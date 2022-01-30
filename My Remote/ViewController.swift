@@ -15,53 +15,46 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var channel: UILabel!
     
+    @IBOutlet weak var controlsView: UIView!
+    
+    var currentChannelText: String = "10"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
-    
-    func powerIsOff() -> Bool {
-        return power.text != "On"
     }
 
     @IBAction func powerToggled(_ sender: UISwitch) {
         if sender.isOn {
             power.text = "On"
+            controlsView.isUserInteractionEnabled = true
         } else {
             power.text = "Off"
+            controlsView.isUserInteractionEnabled = false
         }
     }
     
     @IBAction func volumeChanged(_ sender: UISlider) {
-        if (powerIsOff()) {
-            return
-        }
-        
         let currentVol = round(sender.value * 100)
         let formattedVol = String(format: "%.0f", currentVol)
         volume.text = "\(formattedVol)"
     }
     
     @IBAction func channelEntered(_ sender: UIButton) {
-        if (powerIsOff()) {
-            return
-        }
-        
         if let value = sender.currentTitle {
-            let currentValue = channel.text != nil ? channel.text! : ""
-            
-            if (currentValue.count < 2) {
-                channel.text = "\(currentValue)\(value)"
+            if (currentChannelText.count < 2) {
+                currentChannelText = "\(currentChannelText)\(value)"
             } else {
-                channel.text = "\(value)"
+                currentChannelText = "\(value)"
+            }
+            
+            if (currentChannelText.count == 2) {
+                channel.text = currentChannelText
             }
         }
     }
     
     @IBAction func channelUp(_ sender: UIButton) {
-        if (powerIsOff()) {
-            return
-        }
         let currentText = channel.text != nil ? channel.text! : "1"
         if (currentText.count > 2) {
             return
@@ -69,14 +62,14 @@ class ViewController: UIViewController {
         
         let currentValue = Int(channel.text != nil ? channel.text! : "1")!
         if (currentValue < 99) {
-            channel.text = "\(currentValue + 1)"
+            let newValue = currentValue + 1
+            let formattedValue = newValue < 10 ? "0\(newValue)" : "\(newValue)"
+            currentChannelText = formattedValue
+            channel.text = "\(formattedValue)"
         }
     }
     
     @IBAction func channelDown(_ sender: UIButton) {
-        if (powerIsOff()) {
-            return
-        }
         let currentText = channel.text != nil ? channel.text! : "1"
         if (currentText.count > 2) {
             return
@@ -84,15 +77,14 @@ class ViewController: UIViewController {
         
         let currentValue = Int(channel.text != nil ? channel.text! : "1")!
         if (currentValue > 1) {
-            channel.text = "\(currentValue - 1)"
+            let newValue = currentValue - 1
+            let formattedValue = newValue < 10 ? "0\(newValue)" : "\(newValue)"
+            currentChannelText = formattedValue
+            channel.text = "\(formattedValue)"
         }
     }
     
     @IBAction func favoriteChannelSelected(_ sender: UISegmentedControl) {
-        if (powerIsOff()) {
-            return
-        }
-        
         if let value = sender.titleForSegment(at: sender.selectedSegmentIndex) {
             channel.text = "\(value)"
         }
