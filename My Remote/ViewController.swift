@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var controlsView: UIView!
     
+    @IBOutlet weak var displayView: UIView!
+    
     var currentChannelText: String = "10"
     
     override func viewDidLoad() {
@@ -28,9 +30,11 @@ class ViewController: UIViewController {
         if sender.isOn {
             power.text = "On"
             controlsView.isUserInteractionEnabled = true
+            displayView.backgroundColor = UIColor.systemGray5
         } else {
             power.text = "Off"
             controlsView.isUserInteractionEnabled = false
+            displayView.backgroundColor = UIColor.black
         }
     }
     

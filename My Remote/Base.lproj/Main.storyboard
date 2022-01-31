@@ -268,6 +268,7 @@
                     <connections>
                         <outlet property="channel" destination="uzT-0x-wfO" id="wDl-Xg-Pw2"/>
                         <outlet property="controlsView" destination="Qgk-8X-bai" id="6Xe-rh-3FZ"/>
+                        <outlet property="displayView" destination="C4h-jZ-hRF" id="dLJ-NS-hhs"/>
                         <outlet property="power" destination="X2C-di-j00" id="cor-GO-YzP"/>
                         <outlet property="volume" destination="6vb-1H-c8p" id="D65-Kd-0UE"/>
                     </connections>
