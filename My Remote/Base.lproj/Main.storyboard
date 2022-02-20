@@ -41,13 +41,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CVj-7Z-Wp4">
                                         <rect key="frame" x="155" y="106" width="236" height="25.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Current Channel:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAX-wa-nZC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Current Channel:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAX-wa-nZC">
                                                 <rect key="frame" x="0.0" y="0.0" width="206" height="25.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzT-0x-wfO">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzT-0x-wfO">
                                                 <rect key="frame" x="214" y="0.0" width="22" height="25.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
@@ -58,13 +58,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mIv-dz-7BK">
                                         <rect key="frame" x="155" y="8" width="236" height="25.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TV Power:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7m-jz-I1j">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="TV Power:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7m-jz-I1j">
                                                 <rect key="frame" x="0.0" y="0.0" width="201" height="25.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="On" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2C-di-j00">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2C-di-j00">
                                                 <rect key="frame" x="209" y="0.0" width="27" height="25.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
@@ -324,7 +324,7 @@
                                 <items>
                                     <barButtonItem title="Switch to DVR" id="3qD-dF-DnS">
                                         <connections>
-                                            <segue destination="pf6-4G-4P2" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="rBy-Tq-SaH"/>
+                                            <segue destination="pf6-4G-4P2" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="rBy-Tq-SaH"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -355,6 +355,7 @@
                             <constraint firstItem="LMs-au-bIh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="z1F-tg-9zc"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4qb-q7-yCs"/>
                     <connections>
                         <outlet property="channel" destination="uzT-0x-wfO" id="wDl-Xg-Pw2"/>
                         <outlet property="controlsView" destination="Qgk-8X-bai" id="6Xe-rh-3FZ"/>
@@ -462,7 +463,7 @@
                                 <items>
                                     <barButtonItem title="Switch to TV" id="1hE-40-5HS">
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="AJj-hd-U2j"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="AJj-hd-U2j"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

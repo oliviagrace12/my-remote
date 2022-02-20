@@ -29,6 +29,7 @@ class DvrViewController: UIViewController {
             power.text = "Off"
             controllerView.isUserInteractionEnabled = false
             displayView.backgroundColor = UIColor.black
+            state.text = "Stopped"
         }
     }
     
@@ -43,11 +44,19 @@ class DvrViewController: UIViewController {
     */
 
     @IBAction func play(_ sender: UIButton) {
-        state.text = "Playing"
+        if (state.text == "Recording") {
+            displayInvalidActionPopup(currentAction: state.text!, desiredAction: "Recording")
+        } else {
+            state.text = "Playing"
+        }
     }
     
     @IBAction func pause(_ sender: UIButton) {
-        state.text = "Paused"
+        if (state.text == "Playing") {
+            state.text = "Paused"
+        } else {
+            displayInvalidActionPopup(currentAction: state.text!, desiredAction: "Paused")
+        }
     }
     
     @IBAction func stop(_ sender: UIButton) {
@@ -55,15 +64,53 @@ class DvrViewController: UIViewController {
     }
     
     @IBAction func rewind(_ sender: UIButton) {
-        state.text = "Rewinding"
+        if (state.text == "Playing") {
+            state.text = "Rewinding"
+        } else {
+            displayInvalidActionPopup(currentAction: state.text!, desiredAction: "Rewinding")
+        }
     }
     
     @IBAction func fastForward(_ sender: UIButton) {
-        state.text = "Fast Forwarding"
+        if (state.text == "Playing") {
+            state.text = "Fast Forwarding"
+        } else {
+            displayInvalidActionPopup(currentAction: state.text!, desiredAction: "Fast Forwarding")
+        }
     }
     
     @IBAction func record(_ sender: UIButton) {
-        state.text = "Recording"
+        if (state.text == "Stopped") {
+            state.text = "Recording"
+        } else {
+            displayInvalidActionPopup(currentAction: state.text!, desiredAction: "Recording")
+        }
     }
    
+    func displayInvalidActionPopup(currentAction: String, desiredAction: String) {
+        let title:String = "Cannot perform action \(desiredAction)"
+        let message:String = "Would you like to force quit action \(currentAction) and start action \(desiredAction)?"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let proceedAction = UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: {_ in self.displayConfirmedActionPopup(priorAction: currentAction, newAction: desiredAction)})
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(proceedAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func displayConfirmedActionPopup(priorAction: String, newAction: String) {
+        let title = "Action \(newAction) started"
+        let message = "Action \(priorAction) has been stopped and action \(newAction) has been started"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: {() in self.state.text = newAction})
+    }
 }
