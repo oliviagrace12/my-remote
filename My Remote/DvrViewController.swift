@@ -42,4 +42,28 @@ class DvrViewController: UIViewController {
     }
     */
 
+    @IBAction func play(_ sender: UIButton) {
+        state.text = "Playing"
+    }
+    
+    @IBAction func pause(_ sender: UIButton) {
+        state.text = "Paused"
+    }
+    
+    @IBAction func stop(_ sender: UIButton) {
+        state.text = "Stopped"
+    }
+    
+    @IBAction func rewind(_ sender: UIButton) {
+        state.text = "Rewinding"
+    }
+    
+    @IBAction func fastForward(_ sender: UIButton) {
+        state.text = "Fast Forwarding"
+    }
+    
+    @IBAction func record(_ sender: UIButton) {
+        state.text = "Recording"
+    }
+   
 }
