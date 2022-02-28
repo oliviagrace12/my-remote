@@ -7,6 +7,11 @@
 
 import UIKit
 
+var channelConfigs: Array<ChannelConfig> = [ChannelConfig(label: "ABC", channel: 5),
+                                            ChannelConfig(label: "NBC", channel: 6),
+                                            ChannelConfig(label: "CBS", channel: 7),
+                                            ChannelConfig(label: "FOX", channel: 8)]
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var power: UILabel!
@@ -21,9 +26,17 @@ class ViewController: UIViewController {
     
     var currentChannelText: String = "10"
     
+    @IBOutlet weak var favoriteChannels: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_: Bool) {
+        super.viewWillAppear(true)
+        for i in 0...3 {
+            favoriteChannels.setTitle(channelConfigs[i].label, forSegmentAt: i)
+        }
     }
 
     @IBAction func powerToggled(_ sender: UISwitch) {
@@ -89,9 +102,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func favoriteChannelSelected(_ sender: UISegmentedControl) {
-        if let value = sender.titleForSegment(at: sender.selectedSegmentIndex) {
-            channel.text = "\(value)"
-        }
+        let index = sender.selectedSegmentIndex
+        let channelValue = channelConfigs[index].channel
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        let formattedValue = formatter.string(from: NSNumber(value: channelValue))!
+        
+        channel.text = channelValue < 10 ? "0\(formattedValue)" : "\(formattedValue)"
     }
 }
 
